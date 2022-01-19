@@ -8,7 +8,8 @@ The small application for finding the shortest path between two participants thr
 ## Installation
 1. Clone this repo
 2. Run `$ composer update`
-3. Need to register a connection to your database(DATABASE_URL) in .env 
+3. Need to register a connection to your database(DATABASE_URL) in .env
+4. execute sql file facebook_friends.sql
 
 ## How to use
 1. Open project root
