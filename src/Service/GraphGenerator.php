@@ -16,14 +16,14 @@ class GraphGenerator
 
     public function getFriendsIds(int $startId, int $endId) : array
     {
-        $graph = $this->createGraph($startId);
+        //$this->newSQL();
+        $graph = $this->createGraph($startId, $endId);
 
         return $this->bfsWithPath($graph, $startId, $endId);
     }
 
-    public function createGraph(int $firstId) : array
+    public function createGraph(int $firstId, int $endId) : array
     {
-        $args = [];
         $args[$firstId] = $firstId;
         $graph = [];
         $i = 0;
@@ -31,6 +31,10 @@ class GraphGenerator
             $friends = $this->friendRepository->findAllCouple($args);
             foreach ($friends as $k => $v) {
                 $graph[$v['user_id']][] = (int)$v['friend_id'];
+                if ((int)$v['friend_id'] == $endId) {
+                    $i = 4;
+                    break;
+                }
                 $args[$v['friend_id']] = (int)$v['friend_id'];
                 if (isset($args[$v['user_id']])) {
                     unset($args[$v['user_id']]);
@@ -68,5 +72,10 @@ class GraphGenerator
         }
 
         return [];
+    }
+
+    public function newSQL() {
+        var_dump($this->friendRepository->testTeothy());
+        die();
     }
 }
