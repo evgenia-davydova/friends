@@ -30,16 +30,13 @@ class FacebookFriendsRepository extends ServiceEntityRepository
     }
 
 
-    public function testTeothy() {
+    /*public function testTeothy() {
         $entityManager = $this->getEntityManager();
         $query = $entityManager->createQuery(
-            'WITH RECURSIVE paths (cur_path, cur_dest, tot_distance) AS ( SELECT CAST(user_id AS CHAR(100)), ' .
-            'CAST(user_id AS CHAR(100)), 0 FROM facebook_friends WHERE user_id=1 UNION SELECT CONCAT(paths.cur_path, '.
-            '"->"' . ', facebook_friends.friend_id), facebook_friends.friend_id, paths.tot_distance+1 FROM paths,'.
-            'facebook_friends WHERE paths.cur_dest = facebook_friends.user_id AND NOT ' .
-            'FIND_IN_SET(facebook_friends.friend_id, REPLACE(paths.cur_path,'. '" ->"'. ',',') ) ) SELECT * FROM paths WHERE cur_dest=11 ORDER BY tot_distance ASC LIMIT 1');
+            "WITH RECURSIVE paths (cur_path, cur_dest, tot_distance) AS ( SELECT CAST(user_id AS CHAR(100)), CAST(user_id AS CHAR(100)), 0 FROM facebook_friends WHERE user_id=1 UNION SELECT CONCAT(paths.cur_path, ' ', facebook_friends.friend_id), facebook_friends.friend_id, paths.tot_distance+1 FROM paths, facebook_friends WHERE paths.cur_dest = facebook_friends.user_id AND NOT FIND_IN_SET(facebook_friends.friend_id, REPLACE(paths.cur_path,' ',',') ) ) SELECT * FROM paths WHERE cur_dest=11 ORDER BY tot_distance ASC LIMIT 1"
+        );
 
         return $query->getResult();
-    }
+    }*/
 
 }
